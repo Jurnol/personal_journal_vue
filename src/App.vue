@@ -1,5 +1,3 @@
-
-
 <!-- <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -7,20 +5,15 @@
 
 <template>
   <div id="app">
-    <RegistrationForm/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import RegistrationForm from './components/RegistrationForm.vue'
-
 export default {
-  components: {
-    RegistrationForm
-  }
-}
+  name: "App",
+};
 </script>
-
 
 <!-- 
 <script>

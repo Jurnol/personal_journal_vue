@@ -17,7 +17,9 @@
 </template>
 
 <script>
+import axios from "axios";
 import { toSnakeCase } from "@/utils";
+import { useRouter } from "vue-router";
 export default {
   data() {
     return {
@@ -28,23 +30,26 @@ export default {
         password: "",
         passwordConfirmation: "",
       },
+      errorMessage: "",
+      successMessage: "",
     };
   },
   methods: {
     async registerUser() {
+      const router = useRouter();
       const userData = toSnakeCase(this.user);
       try {
-        const response = await fetch("http://localhost:3000/api/v1/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ user: userData }),
-        });
-        if (!response.ok) throw new Error("Registration failed");
-        const result = await response.json();
-        console.log(result);
+        const response = await axios.post(
+          "http://localhost:3000/api/v1/register",
+          { user: userData }
+        );
+        // Navigate to login on success
+        this.successMessage =
+          response.data.message || "Successfully Registered";
+        setTimeout(() => router.push({ name: "login" }), 3000);
       } catch (error) {
+        this.errorMessage =
+          error.response.data.message || "Registration failed";
         console.error(error);
       }
     },
