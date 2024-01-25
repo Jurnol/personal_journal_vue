@@ -5,6 +5,7 @@
 
 <template>
   <div id="app">
+    <!--This uses the router to display the current page-->
     <router-view></router-view>
   </div>
 </template>
