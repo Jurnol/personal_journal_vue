@@ -1,6 +1,10 @@
 <template>
   <div>
     <h1>Register</h1>
+    <!-- This displays the success message by binding it to the form-->
+    <p v-if="successMessage" class="success-message">
+      {{ successMessage }}
+    </p>
     <form @submit.prevent="registerUser">
       <input type="text" v-model="user.firstName" placeholder="First Name" />
       <input type="text" v-model="user.lastName" placeholder="last Name" />
@@ -13,13 +17,16 @@
       />
       <button type="submit">Sign Up</button>
     </form>
+    <!-- Error Message-->
+    <p v-if="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </p>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { toSnakeCase } from "@/utils";
-import { useRouter } from "vue-router";
 export default {
   data() {
     return {
@@ -36,20 +43,30 @@ export default {
   },
   methods: {
     async registerUser() {
-      const router = useRouter();
-      const userData = toSnakeCase(this.user);
+      // clear error/success message incase a person makes a mistake, then fixes it
+      this.errorMessage = "";
+      this.successMessage = "";
+
       try {
         const response = await axios.post(
           "http://localhost:3000/api/v1/register",
-          { user: userData }
+          { user: toSnakeCase(this.user) }
         );
-        // Navigate to login on success
+
         this.successMessage =
           response.data.message || "Successfully Registered";
-        setTimeout(() => router.push({ name: "login" }), 3000);
+
+        // Use this.$router to access the router instance
+        setTimeout(() => this.$router.push({ name: "login" }), 2000);
       } catch (error) {
-        this.errorMessage =
-          error.response.data.message || "Registration failed";
+        if (error.response && error.response.data) {
+          // Check if the custom error message is in the 'data' object
+          this.errorMessage =
+            error.response.data.error || "Registration failed";
+        } else {
+          // Fallback error message
+          this.errorMessage = "An unexpected error occurred";
+        }
         console.error(error);
       }
     },
