@@ -41,7 +41,6 @@ export default {
 
 .navbar-title {
   display: flex;
-  justify-content: center;
   flex-grow: 1; /* Allows the title to grow and center itself */
   text-align: left;
   margin: 0; /* Removes default margin */
