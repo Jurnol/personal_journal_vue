@@ -1,17 +1,20 @@
 <template>
   <div id="app">
-    <nav class="navbar">
-      <!-- <div class="spacer"></div> -->
-      <h1 class="navbar-title">jurno.</h1>
-      <div class="nav-buttons">
-        <button @click="navigateTo('/')">Home</button>
-        <button @click="navigateTo('/register')">Register</button>
-        <button @click="navigateTo('/login')">Login</button>
-      </div>
-      <!-- <div class="spacer"></div> -->
-    </nav>
-    <!--This uses the router to display the current page-->
-    <router-view></router-view>
+    <div style="display: flex; flex-direction: column">
+      <nav class="navbar">
+        <h1 class="navbar-title">
+          jurno
+          <div style="color: #ec9947">.</div>
+        </h1>
+        <div class="nav-buttons">
+          <button @click="navigateTo('/')">Home</button>
+          <button @click="navigateTo('/register')">Register</button>
+          <button @click="navigateTo('/login')">Login</button>
+        </div>
+      </nav>
+      <!--This uses the router to display the current page-->
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -37,9 +40,12 @@ export default {
 }
 
 .navbar-title {
+  display: flex;
+  justify-content: center;
   flex-grow: 1; /* Allows the title to grow and center itself */
   text-align: left;
   margin: 0; /* Removes default margin */
+  text-align: center;
   color: antiquewhite;
 }
 
