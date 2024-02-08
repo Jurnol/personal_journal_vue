@@ -1,20 +1,18 @@
 <template>
   <div id="app">
-    <div style="display: flex; flex-direction: column">
-      <nav class="navbar">
-        <h1 class="navbar-title">
-          jurno
-          <div style="color: #ec9947">.</div>
-        </h1>
-        <div class="nav-buttons">
-          <button @click="navigateTo('/')">Home</button>
-          <button @click="navigateTo('/register')">Register</button>
-          <button @click="navigateTo('/login')">Login</button>
-        </div>
-      </nav>
-      <!--This uses the router to display the current page-->
-      <router-view></router-view>
-    </div>
+    <nav class="navbar">
+      <h1 class="navbar-title">
+        jurno
+        <div style="color: #ec9947">.</div>
+      </h1>
+      <div class="nav-buttons">
+        <button @click="navigateTo('/')">Home</button>
+        <button @click="navigateTo('/register')">Register</button>
+        <button @click="navigateTo('/login')">Login</button>
+      </div>
+    </nav>
+    <!--This uses the router to display the current page-->
+    <router-view></router-view>
   </div>
 </template>
 
@@ -30,6 +28,11 @@ export default {
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .navbar {
   display: flex;
   align-items: center;
