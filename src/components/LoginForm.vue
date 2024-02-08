@@ -38,7 +38,11 @@ export default {
         );
         // Here you might want to do something with the response, like storing a token
         console.log(response.data); // Log or handle response data
-
+        sessionStorage.setItem("session-token", response.data.token);
+        console.log(
+          "Token stored in sessionStorage:",
+          sessionStorage.getItem("session-token")
+        );
         // Redirect to another page after login, adjust the route as needed
         // router.push({ name: "dashboard" }) similar to the registration page, will likely go to a dashboard
       } catch (error) {
