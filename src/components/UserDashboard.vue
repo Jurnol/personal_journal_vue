@@ -1,8 +1,7 @@
 <template>
   <div>
-    <h1>User Dashboard</h1>
-    <div v-if="userInfo">
-      <p>Welcome, {{ userInfo.user_info.first_name }}</p>
+    <div v-if="userInfo" style="text-align: center">
+      <h2>Hey, {{ userInfo.user_info.first_name }}!</h2>
     </div>
   </div>
 </template>
