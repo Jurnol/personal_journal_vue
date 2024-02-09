@@ -43,6 +43,7 @@ export default {
           "Token stored in sessionStorage:",
           sessionStorage.getItem("session-token")
         );
+        setTimeout(() => this.$router.push({ name: "userdashboard" }), 1000);
         // Redirect to another page after login, adjust the route as needed
         // router.push({ name: "dashboard" }) similar to the registration page, will likely go to a dashboard
       } catch (error) {
