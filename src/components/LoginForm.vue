@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     async loginUser() {
-      // const router = useRouter();
       const userData = toSnakeCase(this.user);
       try {
         const response = await axios.post(
@@ -36,14 +35,14 @@ export default {
             userData,
           }
         );
-        // Here you might want to do something with the response, like storing a token
-        console.log(response.data); // Log or handle response data
-
-        // Redirect to another page after login, adjust the route as needed
-        // router.push({ name: "dashboard" }) similar to the registration page, will likely go to a dashboard
+        console.log(response.data);
+        sessionStorage.setItem("session-token", response.data.token);
+        console.log(
+          "Token stored in sessionStorage:",
+          sessionStorage.getItem("session-token")
+        );
+        setTimeout(() => this.$router.push({ name: "userdashboard" }), 1000);
       } catch (error) {
-        //Take into consideration the thing from the registration page, where there response didn't have
-        //User similar error handling as the registration component
         this.errorMessage = error.response.data.message || "Login failed";
       }
     },
