@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { toSnakeCase } from "@/utils";
 import axios from "axios";
 
 export default {
@@ -26,7 +25,7 @@ export default {
   },
   methods: {
     async loginUser() {
-      const userData = toSnakeCase(this.user);
+      const userData = this.user;
       try {
         const response = await axios.post(
           "http://localhost:3000/api/v1/login",
