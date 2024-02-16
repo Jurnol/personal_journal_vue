@@ -13,7 +13,6 @@
 <script>
 import { toSnakeCase } from "@/utils";
 import axios from "axios";
-// import { useRouter } from "vue-router";
 
 export default {
   data() {
